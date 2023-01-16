@@ -5,7 +5,43 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
+		<PackageProjectUrl>$(RepositoryURL)</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Cfboy1995/UnidecodeSharpFork</RepositoryUrl>
+		<PackageTags>unicode;decoder;text</PackageTags>
+		<Authors>Richard Whicker</Authors>
+		<Copyright>2023</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>First Release.</PackageReleaseNotes>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>UnicodeSharpFork.png</PackageIcon>
+		<Description>C# library, provides extension method to transliterate any Unicode string into ASCII.</Description>
+		<Company>Cfboy1995</Company>
+		<Title>$(AssemblyName)</Title>
+		<PackageId>$(Company).$(AssemblyName)</PackageId>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="UnidecodeSharpFork\Unicode.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="UnidecodeSharpFork\Unicode.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>True</Pack>
+			<PackagePath>\UnicodeSharpFork</PackagePath>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\UnicodeSharpFork.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<Using Include="Newtonsoft.Json" />
@@ -13,12 +49,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="UnidecodeSharpFork\Unicode.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
 	</ItemGroup>
 
 </Project>
