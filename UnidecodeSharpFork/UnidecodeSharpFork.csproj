@@ -25,15 +25,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="UnidecodeSharpFork\Unicode.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="UnidecodeSharpFork\Unicode.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Pack>True</Pack>
-			<PackagePath>\contentFiles\any\any\UnicodeSharpFork</PackagePath>
-		</None>
+		<EmbeddedResource Include="Unicode.json" />
 	</ItemGroup>
 
 	<ItemGroup>

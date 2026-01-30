@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 
 namespace UnidecodeSharpFork
@@ -10,16 +11,51 @@ namespace UnidecodeSharpFork
 	/// </summary>
 	public static class Unidecoder
 	{
+		private const string _unicodeFile = "Unicode.json";
+
+#if !NET10_0_OR_GREATER
+		private static Dictionary<int, IReadOnlyList<string>>? _characters;
+#endif
+
 		/// <summary>
 		/// The unicode characters used.
 		/// </summary>
-		private static Dictionary<int, IReadOnlyList<string>> Characters { get; } = JsonSerializer.Deserialize<Dictionary<int, IReadOnlyList<string>>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "UnidecodeSharpFork", "Unicode.json"))) ??
-#if NET8_0_OR_GREATER
-		[]
+		private static Dictionary<int, IReadOnlyList<string>> Characters
+		{
+			get
+			{
+				if (
+#if NET10_0_OR_GREATER
+				field
 #else
-		new Dictionary<int, IReadOnlyList<string>>()
+				_characters
 #endif
-;
+				is null)
+				{
+					using Stream? stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{nameof(UnidecodeSharpFork)}.{_unicodeFile}") ?? throw new FileNotFoundException(null, _unicodeFile);
+
+#if NET10_0_OR_GREATER
+					field
+#else
+					_characters
+#endif
+					= JsonSerializer.Deserialize<Dictionary<int, IReadOnlyList<string>>>(stream) ??
+#if NET8_0_OR_GREATER
+					[];
+#else
+					new Dictionary<int, IReadOnlyList<string>>();
+#endif
+				}
+
+
+#if NET10_0_OR_GREATER
+				return field;			
+#else
+				return _characters;
+#endif
+			}
+		}
+
 		/// <summary>
 		/// Transliterate Unicode string to ASCII string.
 		/// </summary>
