@@ -7,6 +7,8 @@
 		<RepositoryUrl>https://github.com/TheDarkOrganism/UnidecodeSharpFork</RepositoryUrl>
 		<PackageTags>unicode;decoder;text</PackageTags>
 		<Authors>Richard Whicker</Authors>
+		<AssemblyVersion>2.0.0</AssemblyVersion>
+		<Version>$(AssemblyVersion)</Version>
 		<Copyright>2026</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReleaseNotes>First Release.</PackageReleaseNotes>
@@ -16,6 +18,10 @@
 		<Company>TheDarkOrganism</Company>
 		<Title>$(AssemblyName)</Title>
 		<PackageId>$(Company).$(AssemblyName)</PackageId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="!$(Configuration.StartsWith('Debug'))">
+		<DebugType>none</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -32,6 +38,10 @@
 
 	<ItemGroup>
 		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
