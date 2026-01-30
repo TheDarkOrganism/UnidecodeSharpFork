@@ -7,13 +7,13 @@
 		<RepositoryUrl>https://github.com/Cfboy1995/UnidecodeSharpFork</RepositoryUrl>
 		<PackageTags>unicode;decoder;text</PackageTags>
 		<Authors>Richard Whicker</Authors>
-		<Copyright>2023</Copyright>
+		<Copyright>2026</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReleaseNotes>First Release.</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageIcon>UnicodeSharpFork.png</PackageIcon>
 		<Description>C# library, provides extension method to transliterate any Unicode string into ASCII.</Description>
-		<Company>Cfboy1995</Company>
+		<Company>TheDarkOrganism</Company>
 		<Title>$(AssemblyName)</Title>
 		<PackageId>$(Company).$(AssemblyName)</PackageId>
 	</PropertyGroup>
