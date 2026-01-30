@@ -19,15 +19,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="UnidecodeSharpFork\Unicode.json" />
+		<None Remove="UnidecodeSharpFork\Unicode.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="UnidecodeSharpFork\Unicode.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	    <Pack>True</Pack>
-	    <PackagePath>\contentFiles\any\any\UnicodeSharpFork</PackagePath>
-	  </None>
+		<None Include="UnidecodeSharpFork\Unicode.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>True</Pack>
+			<PackagePath>\contentFiles\any\any\UnicodeSharpFork</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -41,8 +41,8 @@
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
+		<PackageReference Include="System.Text.Json" Version="10.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>

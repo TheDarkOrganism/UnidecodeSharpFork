@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 namespace UnidecodeSharpFork
 {
@@ -13,7 +13,7 @@ namespace UnidecodeSharpFork
 		/// <summary>
 		/// The unicode characters used.
 		/// </summary>
-		private static Dictionary<int, IReadOnlyList<string>> Characters { get; } = JsonConvert.DeserializeObject<Dictionary<int, IReadOnlyList<string>>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "UnidecodeSharpFork", "Unicode.json"))) ??
+		private static Dictionary<int, IReadOnlyList<string>> Characters { get; } = JsonSerializer.Deserialize<Dictionary<int, IReadOnlyList<string>>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "UnidecodeSharpFork", "Unicode.json"))) ??
 #if NET8_0_OR_GREATER
 		[]
 #else
