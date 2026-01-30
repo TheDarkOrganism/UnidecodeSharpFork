@@ -1,10 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net6.0;net7.0</TargetFrameworks>
-		<ImplicitUsings>enable</ImplicitUsings>
+		<TargetFrameworks>netstandard2.1;net8.0;net9.0;net10.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
-		<LangVersion>latest</LangVersion>
 		<PackageProjectUrl>$(RepositoryURL)</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Cfboy1995/UnidecodeSharpFork</RepositoryUrl>
 		<PackageTags>unicode;decoder;text</PackageTags>
@@ -21,34 +19,34 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="UnidecodeSharpFork\Unicode.json" />
+	  <None Remove="UnidecodeSharpFork\Unicode.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="UnidecodeSharpFork\Unicode.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Pack>True</Pack>
-			<PackagePath>\UnicodeSharpFork</PackagePath>
-		</Content>
+	  <None Include="UnidecodeSharpFork\Unicode.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <Pack>True</Pack>
+	    <PackagePath>\contentFiles\any\any\UnicodeSharpFork</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\UnicodeSharpFork.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
 		<None Include="..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Using Include="Newtonsoft.Json" />
+		<None Include="..\UnicodeSharpFork.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="UnicodeSharpFork.png" />
 	</ItemGroup>
 
 </Project>

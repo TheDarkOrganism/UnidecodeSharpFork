@@ -1,4 +1,9 @@
-﻿namespace UnidecodeSharpFork
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace UnidecodeSharpFork
 {
 	/// <summary>
 	/// ASCII transliterations of Unicode text
@@ -8,8 +13,13 @@
 		/// <summary>
 		/// The unicode characters used.
 		/// </summary>
-		private static IReadOnlyDictionary<int, IReadOnlyList<string>> Characters { get; } = JsonConvert.DeserializeObject<Dictionary<int, IReadOnlyList<string>>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "UnidecodeSharpFork", "Unicode.json"))) ?? new();
-
+		private static Dictionary<int, IReadOnlyList<string>> Characters { get; } = JsonConvert.DeserializeObject<Dictionary<int, IReadOnlyList<string>>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "UnidecodeSharpFork", "Unicode.json"))) ??
+#if NET8_0_OR_GREATER
+		[]
+#else
+		new Dictionary<int, IReadOnlyList<string>>()
+#endif
+;
 		/// <summary>
 		/// Transliterate Unicode string to ASCII string.
 		/// </summary>
@@ -22,7 +32,7 @@
 		/// </returns>
 		public static string Unidecode(this string? input)
 		{
-			return input is null or "" ? string.Empty : input.All(x => x < 0x80)
+			return string.IsNullOrEmpty(input) ? string.Empty : input.All(x => x < 0x80)
 				? input
 				: string.Join(string.Empty, input.Select(c => c < 0x80 ? c.ToString() : Characters.TryGetValue(c >> 8, out IReadOnlyList<string>? transliterations) ? transliterations[c & 0xff] : default));
 		}
