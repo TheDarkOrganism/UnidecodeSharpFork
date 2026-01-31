@@ -32,4 +32,4 @@ jobs:
           run: dotnet build "./${{ env.Solution }}.sln" --configuration Release --no-restore
 
         - name: Run Tests
-          run: dotnet test "./${{ env.Project }}/${{ env.Project }}.csproj" --configuration Release --no-build --verbosity detailed
+          run: dotnet test "./${{ env.Project }}/${{ env.Project }}.csproj" --configuration Release --no-build --verbosity normal
