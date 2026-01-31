@@ -38,7 +38,7 @@ namespace UnidecodeSharpFork
 #endif
 				is null)
 				{
-#if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
+#if !NETSTANDARD2_0
 					using
 #endif
 					Stream
@@ -57,7 +57,17 @@ namespace UnidecodeSharpFork
 #else
 					_characters
 #endif
-					= JsonSerializer.Deserialize<Dictionary<int, IReadOnlyList<string>>>(stream) ??
+					= JsonSerializer.Deserialize
+#if NETSTANDARD2_0
+					<Dictionary<int, IReadOnlyList<string>>>
+#endif
+					(stream
+#if !NETSTANDARD2_0
+					, typeof(Dictionary<int, IReadOnlyList<string>>), UnicodeContext.Default) as Dictionary<int, IReadOnlyList<string>>
+#else
+					)
+#endif
+					??
 #if NET8_0_OR_GREATER
 					[];
 #else
