@@ -1,3 +1,9 @@
+![GitHub License](https://img.shields.io/github/license/TheDarkOrganism/UnidecodeSharpFork)
+[![Tests](https://github.com/TheDarkOrganism/UnidecodeSharpFork/actions/workflows/tests.yml/badge.svg)](https://github.com/TheDarkOrganism/UnidecodeSharpFork/actions/workflows/tests.yml)
+![NuGet Version](https://img.shields.io/nuget/v/TheDarkOrganism.UnidecodeSharpFork)
+![NuGet Downloads](https://img.shields.io/nuget/dt/TheDarkOrganism.UnidecodeSharpFork)
+
+
 # Notice #
 
 The code in this repo originaly came from a bitbucket repo

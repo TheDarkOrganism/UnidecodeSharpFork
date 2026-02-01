@@ -6,11 +6,11 @@
 		<RepositoryUrl>https://github.com/TheDarkOrganism/UnidecodeSharpFork</RepositoryUrl>
 		<PackageTags>unicode;decoder;text</PackageTags>
 		<Authors>Richard Whicker</Authors>
-		<AssemblyVersion>2.0.0</AssemblyVersion>
+		<AssemblyVersion>2.1.0</AssemblyVersion>
 		<Version>$(AssemblyVersion)</Version>
 		<Copyright>2026</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes>First Release.</PackageReleaseNotes>
+		<PackageReleaseNotes>Embeded Unicode.json resource file and added .Net Standard 2.0 support.</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageIcon>UnicodeSharpFork.png</PackageIcon>
 		<Description>C# library, provides extension method to transliterate any Unicode string into ASCII.</Description>
