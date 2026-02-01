@@ -73,8 +73,8 @@ namespace UnidecodeSharpFork
 #else
 					new Dictionary<int, IReadOnlyList<string>>();
 #endif
+#if NETSTANDARD2_0
 
-#if !NETSTANDARD2_1_OR_GREATER && !NET5_0_OR_GREATER
 					stream.Dispose();
 #endif
 				}
@@ -90,11 +90,9 @@ namespace UnidecodeSharpFork
 
 #if NET10_0_OR_GREATER
 #pragma warning disable IDE0055 // Fix formatting
-
 		extension(string? input)
 		{
 #endif
-
 		/// <summary>
 		/// Transliterate Unicode string to ASCII string.
 		/// </summary>
@@ -115,28 +113,20 @@ namespace UnidecodeSharpFork
 		input)
 #endif
 		{
-			return string.IsNullOrEmpty(input) ? string.Empty : input.All(x => x < 0x80)
+			return string.IsNullOrEmpty(input) ? string.Empty : input.All(
+#if NET5_0_OR_GREATER
+				static
+#endif
+				x => x < 0x80)
 				? input
-				: string.Join(string.Empty, input.Select(c => c < 0x80 ? c.ToString() : Characters.TryGetValue(c >> 8, out IReadOnlyList<string>
-#if Nullable
-		?
-#endif
-				transliterations) ? transliterations[c & 0xff] : default));
+				: string.Join(string.Empty, input.Select(Unidecode));
 		}
-
 #if NET10_0_OR_GREATER
 		}
-
-#pragma warning restore IDE0055 // Fix formatting
-#endif
-
-#if NET10_0_OR_GREATER
-#pragma warning disable IDE0055 // Fix formatting
 
 		extension(char c)
 		{
 #endif
-
 		/// <summary>
 		/// Transliterate Unicode character to ASCII string.
 		/// </summary>
@@ -161,10 +151,8 @@ namespace UnidecodeSharpFork
 #endif
 				transliterations) ? transliterations[c & 0xff] : string.Empty;
 		}
-
 #if NET10_0_OR_GREATER
 		}
-
 #pragma warning restore IDE0055 // Fix formatting
 #endif
 	}
