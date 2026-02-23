@@ -28,6 +28,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(IsPublishing)'=='true' Or '$(PublishDir)'!=''">
+		<AssemblyName>$(AssemblyName).$(TargetFramework)</AssemblyName>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="!$(Configuration.StartsWith('Debug'))">
 		<DebugType>none</DebugType>
 	</PropertyGroup>
